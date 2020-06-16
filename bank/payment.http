@@ -7,7 +7,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "cardNumber": 12345678,
+    "cardNumber": 1234567,
     "securityCode":90,
     "billAmount":5000
 }
