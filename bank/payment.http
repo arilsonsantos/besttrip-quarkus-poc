@@ -2,15 +2,12 @@
 
 ###
 
-{{host}}
-
-###
-
 POST {{host}}
 Content-Type: application/json
+Accept: application/json
 
 {
     "cardNumber": 12345678,
     "securityCode":90,
-    "billAmount":500
+    "billAmount":5000
 }
