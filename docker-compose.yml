@@ -1,4 +1,8 @@
 version: '3.7'
+networks:
+    bestrip:
+        name: bestrip
+        driver: bridge
 
 services:
     postgres:
@@ -7,10 +11,11 @@ services:
         environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: 123
+            POSTGRES_DB: bestripdb
         ports:
-        - '15432:5432'        
+            - '15432:5432'   
         networks:
-        - postgres-network
+            - bestrip     
       
     pgadmin:
         container_name: pgadmin
@@ -18,13 +23,10 @@ services:
         environment:
             PGADMIN_DEFAULT_EMAIL: admin
             PGADMIN_DEFAULT_PASSWORD: 123
-        ports:
-        - '16432:80'
-        depends_on:
-        - postgres
+        ports: 
+            - '16432:80'
+        depends_on: 
+            - postgres
         networks:
-        - postgres-network
+            - bestrip
 
-networks: 
-  postgres-network:
-    driver: bridge
