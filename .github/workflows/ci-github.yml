@@ -1,4 +1,4 @@
-name: Bank CI
+name: Besttrip CI
 
 on:
 
@@ -17,7 +17,7 @@ jobs:
     - name: Maven Clean and Install
       run: mvn clean install -DskipTests --file pom.xml    
     - name: Maven Verify
-      run: mvn verify --file pom.xml
+      run: mvn verify -Ptest --file pom.xml
 
   pull-request:
     needs: [ build ]
