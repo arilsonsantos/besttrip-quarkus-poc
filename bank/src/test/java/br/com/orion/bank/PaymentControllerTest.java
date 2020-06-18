@@ -10,18 +10,22 @@ import org.junit.jupiter.api.Test;
 
 import br.com.orion.bank.model.dto.PaymentDto;
 
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.h2.H2DatabaseTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
+@QuarkusTestResource(H2DatabaseTestResource.class)
 public class PaymentControllerTest {
 
+    
     @Test
     public void validate_payment_with_success_test()  {
         PaymentDto json = new PaymentDto();
         json.setCardNumber(12345678);
         json.setSecurityCode(90);
         json.setBillAmount(new BigDecimal(10));
-
+        
         given()
             .contentType("application/json")
             .body(json)
