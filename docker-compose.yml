@@ -30,3 +30,48 @@ services:
         networks:
             - bestrip
 
+    mariadb:
+        container_name: mariadb
+        hostname: bestrip
+        image: mariadb
+        environment:
+            - MYSQL_ROOT_PASSWORD=123
+            - MYSQL_DATABASE=paymentsdb
+        ports:
+            - '3306:3306'   
+        networks:
+            - bestrip  
+
+    adminer:
+        container_name: adminer
+        image: adminer
+        restart: always
+        environment:
+            ADMINER_DEFAULT_SERVER: mariadb
+        ports:
+            - '8989:8080'
+        depends_on:   
+            - mariadb
+        networks:
+            - bestrip 
+
+    mongodb:
+        container_name: mongodb
+        image: mongo:3.6.18
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: admin
+            MONGO_INITDB_ROOT_PASSWORD: 123
+        networks:
+            - bestrip
+
+    cardpay:
+        container_name: cardpay
+        hostname: bestrip
+        image: orion/cardpay
+        ports: 
+            - '8282:8080'
+        depends_on: 
+            - mariadb
+        networks:
+            - bestrip
