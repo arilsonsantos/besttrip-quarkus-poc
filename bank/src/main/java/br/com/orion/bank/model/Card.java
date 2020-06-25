@@ -2,6 +2,7 @@ package br.com.orion.bank.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,16 +16,24 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@Table
+@Table(name = "CARD")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
 public class Card {
+    
     @Id
     @GeneratedValue
+    @Column(name = "ID")
     private Long id;
+
+    @Column(name = "CARD_NUMBER")
     private Integer cardNumber;
+
+    @Column(name = "SECURITY_CODE")
     private Integer securityCode;
+
+    @Column(name = "CREDIT_AMOUNT")
     private BigDecimal creditAmount; 
 }
